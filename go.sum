@@ -1,0 +1,10 @@
+github.com/archspec/archspec-go v0.0.0-20231117085542-f806bb25b479 h1:Y7+OofdCse+TR0tjkEqW/pw6PEI9wyvADg4RySHKyyI=
+github.com/archspec/archspec-go v0.0.0-20231117085542-f806bb25b479/go.mod h1:GhqMah2rEGD/YhJp1OlbuoO+LwqXlPredbkjmm0X748=
+github.com/converged-computing/jsongraph-go v0.0.0-20231221142338-90aad45775bb h1:eKXCYq0UUI8LF0vgKC6QHF8rxXscu4XxkzxV/a3rzdc=
+github.com/converged-computing/jsongraph-go v0.0.0-20231221142338-90aad45775bb/go.mod h1:+DhVyLXGVfBsfta4185jd33jqa94inshCcdvsXK2Irk=
+github.com/fatih/set v0.2.1 h1:nn2CaJyknWE/6txyUDGwysr3G5QC6xWB/PtVjPBbeaA=
+github.com/fatih/set v0.2.1/go.mod h1:+RKtMCH+favT2+3YecHGxcc0b4KyVWA1QWWJUs4E0CI=
+github.com/researchapps/flux-sched/resource/reapi/bindings/go v0.0.0-20231222214538-0f33b17f6e79 h1:Vzn7VMpmGFbKISgRMy90FIGvaMrbEuEaNUSEYq2LLZc=
+github.com/researchapps/flux-sched/resource/reapi/bindings/go v0.0.0-20231222214538-0f33b17f6e79/go.mod h1:6Y4Ni7ScCgXS9P3bxOZoliq7LGdaWb9gpUODA/4IpKg=
+github.com/scylladb/go-set v1.0.2 h1:SkvlMCKhP0wyyct6j+0IHJkBkSZL+TDzZ4E7f7BCcRE=
+github.com/scylladb/go-set v1.0.2/go.mod h1:DkpGd78rljTxKAnTDPFqXSGxvETQnJyuSOQwsHycqfs=

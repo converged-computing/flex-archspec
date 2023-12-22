@@ -1,0 +1,22 @@
+version: 9999
+resources:
+    - type: machine
+      count: 1
+      label: default
+      with:
+        - type: microarchitecture
+          count: 1
+          with:
+            - type: slot
+              count: 1
+              label: default
+              with:
+                - type: a64fx
+                  count: 1
+
+attributes:
+tasks:
+  - command: ["match"]
+    slot: default
+    count: 
+      per_slot: 1
