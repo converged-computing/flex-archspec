@@ -60,6 +60,5 @@ RUN git clone -b lib-updates https://github.com/milroy/flux-sched /opt/flux-sche
     cd ../ && \
     make && make install
 
-ENV LD_LIBRARY_PATH=/usr/lib:/opt/flux-sched/resource:/opt/flux-sched/resource/reapi/bindings:/opt/flux-sched/resource/libjobspec
-
 USER $USERNAME
+ENV LD_LIBRARY_PATH=/usr/lib:/opt/flux-sched/resource:/opt/flux-sched/resource/reapi/bindings:/opt/flux-sched/resource/libjobspec

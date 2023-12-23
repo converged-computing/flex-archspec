@@ -10,7 +10,7 @@ import (
 func generateRoot() graph.Node {
 
 	// Generate metadata for the node
-	m := getDefaultMetadata()
+	m := getDefaultMetadata("machine")
 	m.AddElement("vendor", rootVendor)
 	m.AddElement("name", rootNode)
 	m.AddElement("uniq_id", 0)

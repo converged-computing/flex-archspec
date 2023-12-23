@@ -1,15 +1,20 @@
 package graph
 
 import (
-	"fmt"
-
-	"github.com/archspec/archspec-go/archspec/cpu"
 	"github.com/converged-computing/jsongraph-go/jsongraph/v1/graph"
 )
 
-// getRootChild returns an edge that connects the root to a child node
-func getRootChild(target *cpu.Microarchitecture, ids map[string]int) graph.Edge {
-	fmt.Printf("Node %s is attached to the root\n", target.Name)
-	m := getEdgeMetadata()
-	return graph.Edge{Source: "0", Target: fmt.Sprintf("%d", ids[target.Name]), Metadata: m}
+// Helper function to get a set of edges (bidirectional)
+func getBidirectionalEdges(source string, dest string) []graph.Edge {
+	return []graph.Edge{
+		getEdge(source, dest, "contains"),
+		getEdge(dest, source, "in"),
+	}
+}
+
+// Get an edge with a specific containment (typically "contains" or "in")
+func getEdge(source string, dest string, containment string) graph.Edge {
+	m := getEdgeMetadata(containment)
+	return graph.Edge{Source: source, Target: dest, Metadata: m}
+
 }

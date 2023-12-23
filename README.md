@@ -82,16 +82,60 @@ You can provide your request for ice cream (e.g., icecream.yaml) and the descrip
 ```bash
 export LD_LIBRARY_PATH=/usr/lib:/opt/flux-sched/resource:/opt/flux-sched/resource/reapi/bindings:/opt/flux-sched/resource/libjobspec
 ```
+
+#### Ask for an ARM machine
+
 ```bash
-./bin/archspec -spec ./examples/machine.yaml
+./bin/archspec -spec ./examples/arm-machine.yaml
+```
+```console
+ Match policy: first
+ Load format: JSON Graph Format (JGF)
+
+✨️ Init context complete!
+💻️   Request: ./examples/arm-machine.yaml
+
+😍️ Your Machine Arch is Satisfiable!
+Number: 1
+  Spec:
+{"graph": {"nodes": [{"id": "63", "metadata": {"type": "arm", "basename": "arm", "name": "arm", "id": 63, "uniq_id": 63, "rank": -1, "exclusive": true, "unit": "", "size": 1, "paths": {"containment": "/machine/arm"}}}, {"id": "0", "metadata": {"type": "machine", "basename": "machine", "name": "machine", "id": 0, "uniq_id": 0, "rank": -1, "exclusive": false, "unit": "", "si
 ```
 
-It will save the JGF to a temporary json file (and remove it), but to save to one you can later inspect the graph:
+What I need to understand how to represent next is to query for an arbitrary attribute. E.g., right now I can't add something that would ask for a specific arm machine. The label in this selection seems to be relevant for labeling a spot in the graph (to count later). I need this because (as a user) I can't predict this path:
+
+```
+/machine/cannonlake46/cascadelake56/icelake
+```
+
+But I could say "give me a machine that is labeled with `power10le` and then it could query some graph like:
+
+```
+# The stars indicate any level of searching down machines
+/machine/*/*/label=icelake
+```
+
+I don't think this is possible to represent yet. We won't always have a nice structure like `/cluster/node/core` but, for example, multiple kinds of cores. For that example, the problem is that the user doesn't know the intermediate core names to 
+query, they just have the one they see at the bottom.
+
+#### Ask for an ARM machine 
+
+#### Debugging
+
+By default, we save the JGF to a temporary json file (and remove it), but to save to one you can later inspect the graph:
 
 ```bash
 ./bin/archspec -spec ./examples/machine.yaml --file ./machine-graph.json
 ```
+
 Note that I'm including the example [machine-graph.json](machine-graph.json) for inspection - I suspect there is a detail wrong about the structure (and how I'm querying) and will need to look closer at the details.
+
+
+### Issues that need Work
+
+1. I can't query and ask for a custom attribute of interest
+2. Labels are confusing - they are in the JGF but in the jobspec seem to be a different thing to distinguish groups (to count)
+3. I don't have a way to search through an arbitrary level of machines in the graph to find one (at some level) with an attribute of interest.
+4. I'm forced to bi-directionally define every parent -> child (target) with both containments (in and contains)
 
 ## License
 

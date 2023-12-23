@@ -35,7 +35,7 @@ func main() {
 	g.Init(*matchPolicy, *saveFile)
 	match, err := g.Match(specFile)
 	if err != nil {
-		fmt.Printf("Oh no! There was a problem with your machine matching: %x", err)
+		fmt.Printf("Oh no! There was a problem with your machine matching: %s", err)
 		return
 	}
 	match.Show()

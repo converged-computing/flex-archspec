@@ -77,8 +77,11 @@ func (f *FlexGraph) Init(matchPolicy string, saveFile string) error {
 
 		// If we don't have parents, it's attached to the root node
 		if len(target.Parents) == 0 {
-			edge := getRootChild(&target, ids)
-			g.Graph.Edges = append(g.Graph.Edges, edge)
+			fmt.Printf("Node %s is attached to the root\n", target.Name)
+
+			// Generate bidirectional metadata
+			targetId := fmt.Sprintf("%d", ids[target.Name])
+			g.Graph.Edges = append(g.Graph.Edges, getBidirectionalEdges("0", targetId)...)
 		}
 
 		// Generate metadata for the node
@@ -97,7 +100,6 @@ func (f *FlexGraph) Init(matchPolicy string, saveFile string) error {
 		// The edges are the parents
 		for _, parent := range target.Parents {
 
-			m = getEdgeMetadata()
 			parentId := fmt.Sprintf("%d", ids[parent.Name])
 			targetId := fmt.Sprintf("%d", ids[target.Name])
 
@@ -105,8 +107,9 @@ func (f *FlexGraph) Init(matchPolicy string, saveFile string) error {
 			if parentId == "" {
 				parentId = rootNode
 			}
-			edge := graph.Edge{Source: parentId, Target: targetId, Metadata: m}
-			g.Graph.Edges = append(g.Graph.Edges, edge)
+
+			// Generate parent to child edge, and child to parent (child is target)
+			g.Graph.Edges = append(g.Graph.Edges, getBidirectionalEdges(parentId, targetId)...)
 		}
 	}
 
